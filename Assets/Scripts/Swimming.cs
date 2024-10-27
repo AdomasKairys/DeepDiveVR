@@ -19,6 +19,10 @@ public class Swimming : MonoBehaviour
     [SerializeField] WaterController waterController;
     [SerializeField] CapsuleCollider capsuleCollider;
 
+    //[SerializeField] Transform leftController;
+    //[SerializeField] Transform rightController;
+
+
     Rigidbody _rigidbody;
 
     float _coolDownTimer;
@@ -47,6 +51,7 @@ public class Swimming : MonoBehaviour
         {
             var leftHandVelocity = leftControllerVelocity.action.ReadValue<Vector3>();
             var rightHandVelocity = rightControllerVelocity.action.ReadValue<Vector3>();
+
 
             Vector3 localVelocity = leftHandVelocity + rightHandVelocity;
             localVelocity *= -1;
