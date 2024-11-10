@@ -16,6 +16,14 @@ public class WaterController : MonoBehaviour
             OnWaterEnter?.Invoke(this, EventArgs.Empty);
         }
     }
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Object"))
+        {
+            var rb = other.attachedRigidbody;
+            rb.AddForce(-Physics.gravity * 0.9f * rb.mass);
+        }
+    }
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MainCamera"))
