@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Anchor
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -17,10 +18,10 @@ TagManager:
   - Environment
   - Body
   - GrabbableObj
-  - 
-  - 
-  - 
-  - 
+  - Rope
+  - Post
+  - SnapObjects
+  - Interactor
   - 
   - 
   - 
