@@ -6,6 +6,7 @@ using System;
 public class Swimming : MonoBehaviour
 {
     [Header("Values")]
+    [SerializeField] float massScale = 0.9f;
     [SerializeField] float swimForce = 2f;
     [SerializeField] float dragForce = 1f;
     [SerializeField] float minForce;
@@ -26,14 +27,14 @@ public class Swimming : MonoBehaviour
     Rigidbody _rigidbody;
 
     float _coolDownTimer;
-    private bool _isEnabled = false;
+    private bool _isEnabled = true;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        waterController.OnWaterEnter += Water_OnEnter;
-        waterController.OnWaterExit += Water_OnExit;
+        //waterController.OnWaterEnter += Water_OnEnter;
+        //waterController.OnWaterExit += Water_OnExit;
 
     }
 
@@ -44,7 +45,7 @@ public class Swimming : MonoBehaviour
             return;
         
         _coolDownTimer += Time.fixedDeltaTime;
-        _rigidbody.AddForce(-Physics.gravity*0.9f*_rigidbody.mass);
+        //_rigidbody.AddForce(-Physics.gravity* massScale * _rigidbody.mass);
         if (_coolDownTimer > minTimeBetweenStrokes
             && leftControllerSwingReference.action.IsPressed()
             && rightControllerSwingReference.action.IsPressed())
