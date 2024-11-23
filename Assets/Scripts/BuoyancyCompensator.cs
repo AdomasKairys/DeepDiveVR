@@ -55,7 +55,7 @@ public class BuoyancyCompensator : MonoBehaviour
         //}
 
         _currentInflation = _volumeOfAir - compressAmmount * Mathf.Round(waterSurfaceLevel.position.y-playerRigidBody.position.y) / waterPressureStep;
-
+        _currentInflation = _currentInflation < 0 ? 0 : _currentInflation;
         _buoyancyForce = _currentInflation * maxBuoyancyForce;
     }
 
