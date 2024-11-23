@@ -15,13 +15,13 @@ public class BuoyancyCompensator : MonoBehaviour
     [SerializeField] WaterController waterController;
 
     //[SerializeField] float buoyancyStrenghtScale = 1f;
-    [SerializeField] float compensatorInflateSpeed = 0.1f;
-    [SerializeField] float compensatorDeflateSpeed = 0.2f;
+    [SerializeField] float compensatorInflateSpeed = 0.05f;
+    [SerializeField] float compensatorDeflateSpeed = 0.1f;
     [SerializeField] float maxCompensatroInflation = 1f;
-    [SerializeField] float underwaterMassScale = 0.9f;
-    [SerializeField] float maxBuoyancyForce = Physics.gravity.magnitude;
+    [SerializeField] float underwaterMassScale = 0.1f;
+    [SerializeField] float maxBuoyancyForce = Physics.gravity.magnitude*0.25f;
     [Tooltip("compensator is compressed by compressAmmount every time y value decreases by waterPressureStep")]
-    [SerializeField] float waterPressureStep = 5f;
+    [SerializeField] float waterPressureStep = 2f;
     [Tooltip("compenstor copression scale when going deeper")]
     [SerializeField] float compressAmmount = 0.1f;
 
@@ -45,16 +45,16 @@ public class BuoyancyCompensator : MonoBehaviour
     }
     private void Update()
     {
-        if (inflateCompensatorReference.action.IsPressed() && _currentInflation < maxCompensatroInflation)
-        {
-            _volumeOfAir += compensatorInflateSpeed;
-        }
-        else if(deflateCompensatorReference.action.IsPressed() && _currentInflation > 0)
-        {
-            _volumeOfAir -= compensatorDeflateSpeed;
-        }
+        //if (inflateCompensatorReference.action.IsPressed() && _currentInflation < maxCompensatroInflation)
+        //{
+        //    _volumeOfAir += compensatorInflateSpeed;
+        //}
+        //else if(deflateCompensatorReference.action.IsPressed() && _currentInflation > 0)
+        //{
+        //    _volumeOfAir -= compensatorDeflateSpeed;
+        //}
 
-        _currentInflation = _volumeOfAir - compressAmmount * Mathf.Round((playerRigidBody.position.y - waterSurfaceLevel.position.y) / waterPressureStep);
+        _currentInflation = _volumeOfAir - compressAmmount * Mathf.Round(waterSurfaceLevel.position.y-playerRigidBody.position.y) / waterPressureStep;
 
         _buoyancyForce = _currentInflation * maxBuoyancyForce;
     }
@@ -62,7 +62,7 @@ public class BuoyancyCompensator : MonoBehaviour
     void FixedUpdate()
     {
         //var direction = (transform.position - _buoyancyPoint).magnitude > 1 ? (transform.position - _buoyancyPoint).normalized : transform.position - _buoyancyPoint;
-        playerRigidBody.AddForce((-Physics.gravity * underwaterMassScale) + new Vector3(0,_buoyancyForce), ForceMode.Acceleration);
+        playerRigidBody.AddForce((-Physics.gravity * (1-underwaterMassScale)) + new Vector3(0,_buoyancyForce), ForceMode.Acceleration);
     }
     private void Water_OnEnter(object sender, EventArgs e)
     {
@@ -72,5 +72,18 @@ public class BuoyancyCompensator : MonoBehaviour
     {
         this.enabled = false;
     }
-
+    public void Inflate()
+    {
+        if(_currentInflation < maxCompensatroInflation)
+        {
+            _volumeOfAir += compensatorInflateSpeed;
+        }
+    }
+    public void Deflate()
+    {
+        if (_currentInflation > 0)
+        {
+            _volumeOfAir -= compensatorDeflateSpeed;
+        }
+    }
 }
