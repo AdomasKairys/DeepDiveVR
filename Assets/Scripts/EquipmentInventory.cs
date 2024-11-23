@@ -34,7 +34,7 @@ public class EquipmentInventory : MonoBehaviour
     }
     void UpdateEquipmentInventory()
     {
-        transform.position = new Vector3(_currentCameraPosition.x, 0, _currentCameraPosition.z);
+        transform.position = new Vector3(_currentCameraPosition.x, transform.position.y, _currentCameraPosition.z);
         transform.rotation = new Quaternion(transform.rotation.x, _currentCameraRotation.y, transform.rotation.z, _currentCameraRotation.w);
     }
 }
