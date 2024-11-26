@@ -10,14 +10,12 @@ public class BuoyancyCompensator : MonoBehaviour
     [SerializeField] Transform waterSurfaceLevel;
     [SerializeField] Rigidbody playerRigidBody;
 
-    [SerializeField] InputActionReference inflateCompensatorReference;
-    [SerializeField] InputActionReference deflateCompensatorReference;
     [SerializeField] WaterController waterController;
 
     //[SerializeField] float buoyancyStrenghtScale = 1f;
     [SerializeField] float compensatorInflateSpeed = 0.05f;
     [SerializeField] float compensatorDeflateSpeed = 0.1f;
-    [SerializeField] float maxCompensatroInflation = 1f;
+    [SerializeField] float maxCompensatorInflation = 1f;
     [SerializeField] float underwaterMassScale = 0.1f;
     [SerializeField] float maxBuoyancyForce = Physics.gravity.magnitude*0.25f;
     [Tooltip("compensator is compressed by compressAmmount every time y value decreases by waterPressureStep")]
@@ -74,7 +72,7 @@ public class BuoyancyCompensator : MonoBehaviour
     }
     public void Inflate()
     {
-        if(_currentInflation < maxCompensatroInflation)
+        if(_currentInflation < maxCompensatorInflation)
         {
             _volumeOfAir += compensatorInflateSpeed;
         }

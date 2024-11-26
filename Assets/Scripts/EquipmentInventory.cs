@@ -7,8 +7,7 @@ public class Equipment
 {
     public GameObject gameObject;
 
-    [Range(0f, 1f)] 
-    public float heightRatio;
+    public float heightOffset;
 }
 public class EquipmentInventory : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class EquipmentInventory : MonoBehaviour
     private Vector3 _currentCameraPosition;
     private Quaternion _currentCameraRotation;
 
-    void Update()
+    void FixedUpdate()
     {
         _currentCameraPosition = mainCamera.transform.position;
         _currentCameraRotation = mainCamera.transform.rotation;
@@ -30,7 +29,7 @@ public class EquipmentInventory : MonoBehaviour
     }
     void UpdateEquipmentHeight(Equipment equipment)
     {
-        equipment.gameObject.transform.position = new Vector3(equipment.gameObject.transform.position.x, _currentCameraPosition.y * equipment.heightRatio, equipment.gameObject.transform.position.z);
+        equipment.gameObject.transform.position = new Vector3(equipment.gameObject.transform.position.x, _currentCameraPosition.y + equipment.heightOffset, equipment.gameObject.transform.position.z);
     }
     void UpdateEquipmentInventory()
     {

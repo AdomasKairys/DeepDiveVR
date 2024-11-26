@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
+    [SerializeField] float objectMassScale = 0.2f;
+
     public event EventHandler OnWaterEnter;
     public event EventHandler OnWaterExit;
 
@@ -26,6 +28,10 @@ public class WaterController : MonoBehaviour
         {
             _isInWater = true;
             OnWaterEnter?.Invoke(this, EventArgs.Empty);
+        }
+        if (other.CompareTag("Object"))
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddForce(-Physics.gravity * (1-objectMassScale), ForceMode.Acceleration);
         }
     }
     public void OnTriggerExit(Collider other)

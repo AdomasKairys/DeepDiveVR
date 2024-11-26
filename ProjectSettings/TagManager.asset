@@ -23,9 +23,9 @@ TagManager:
   - SnapObjects
   - Interactor
   - RopeSocket
-  - 
-  - 
-  - 
+  - Wire
+  - Inventory
+  - InventorySocket
   - 
   - 
   - 
