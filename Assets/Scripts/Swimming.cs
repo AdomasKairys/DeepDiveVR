@@ -73,7 +73,6 @@ public class Swimming : MonoBehaviour
     {
         _isEnabled = true;
         capsuleCollider.height = 0.5f;
-
     }
     private void Water_OnExit(object sender, EventArgs e)
     {

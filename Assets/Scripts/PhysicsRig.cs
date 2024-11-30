@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,23 @@ public class PhysicsRig : MonoBehaviour
     [SerializeField] float bodyHeightMin = 0.5f;
     [SerializeField] float bodyHeightMax = 2f;
 
+    [SerializeField] WaterController waterController;
+    private bool _chageBodyHeight = true;
+
+    private void Awake()
+    {
+        waterController.OnWaterEnter += (_, _) => _chageBodyHeight = false;
+        waterController.OnWaterExit += (_, _) => _chageBodyHeight = true;
+    }
+
     private void FixedUpdate()
     {
-        bodyCollider.height = Mathf.Clamp(playerHead.localPosition.y, bodyHeightMin, bodyHeightMax);
-        bodyCollider.center = new Vector3 (playerHead.localPosition.x, bodyCollider.height / 2,
-            playerHead.localPosition.z);
+        if (_chageBodyHeight)
+        {
+            bodyCollider.height = Mathf.Clamp(playerHead.localPosition.y, bodyHeightMin, bodyHeightMax);
+            bodyCollider.center = new Vector3(playerHead.localPosition.x, bodyCollider.height / 2,
+                playerHead.localPosition.z);
+        }
 
 
         leftHandJoint.targetPosition = leftController.localPosition;

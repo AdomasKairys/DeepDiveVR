@@ -20,6 +20,10 @@ public class OneDimItemToggle : MonoBehaviour
 
         _grabInteractable.activated.AddListener(Item_OnActivated);
         _grabInteractable.deactivated.AddListener(Item_OnDeactivated);
+        _grabInteractable.selectExited.AddListener((_) =>
+        {
+            _toggleValue = 0;
+        });
     }
     private void Update()
     {

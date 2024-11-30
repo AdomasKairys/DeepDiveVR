@@ -18,7 +18,7 @@ public class OxygenUIController : MonoBehaviour
     {
         GameManager.Instance.OnOxygenChanged += GameManager_OnOxygenChanged;
         slider.value = 1;
-        pressureText.text = maxPressure.ToString("0.0") + "bar";
+        pressureText.text = maxPressure.ToString("0.0");
         _initialColor = fillImage.color;
     }
 
@@ -27,7 +27,7 @@ public class OxygenUIController : MonoBehaviour
         slider.value = GameManager.Instance.GetCurrentOxygen() / GameManager.Instance.GetMaxOxygen();
         Color.RGBToHSV(_initialColor, out float h, out float s, out float v);
         fillImage.color = Color.HSVToRGB(h - colorChangeRatio*(1 - slider.value), s,v);
-        pressureText.text = (maxPressure * slider.value).ToString("0.0") + "bar";
+        pressureText.text = (maxPressure * slider.value).ToString("0.0");
     }
 
     void Update()
