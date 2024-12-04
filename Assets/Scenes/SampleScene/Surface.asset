@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   postExposure:
-    m_OverrideState: 0
-    m_Value: 0
-  contrast:
     m_OverrideState: 1
+    m_Value: -0.5
+  contrast:
+    m_OverrideState: 0
     m_Value: -32.4
   colorFilter:
     m_OverrideState: 0
@@ -28,6 +28,67 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 100
+--- !u!114 &-6730028724244347712
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8752436c1c6e30f4da82236df21c18e3, type: 3}
+  m_Name: Fog
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  quality:
+    m_OverrideState: 1
+    m_Value: 2
+  alphaMultiplier:
+    m_OverrideState: 1
+    m_Value: 0.597
+  additionalLightsIntensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 0
+  jitter:
+    m_OverrideState: 1
+    m_Value: 0.072
+  downsample:
+    m_OverrideState: 0
+    m_Value: 2
+  steps:
+    m_OverrideState: 0
+    m_Value: 125
+  stepSize:
+    m_OverrideState: 0
+    m_Value: 0.2
+  density:
+    m_OverrideState: 1
+    m_Value: 0.139
+  minDensity:
+    m_OverrideState: 1
+    m_Value: 0.036
+  fogColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.6000801, g: 0.84654975, b: 0.8773585, a: 1}
+  brightness:
+    m_OverrideState: 1
+    m_Value: 0.9
+  anisotropy:
+    m_OverrideState: 1
+    m_Value: 0.893
+  blurRadius:
+    m_OverrideState: 1
+    m_Value: 0.0021
+  blurStrength:
+    m_OverrideState: 1
+    m_Value: 4.86
+  blurIterations:
+    m_OverrideState: 1
+    m_Value: 2
 --- !u!114 &-2508034763266526979
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -67,6 +128,7 @@ MonoBehaviour:
   - {fileID: 7823980025782105969}
   - {fileID: -2508034763266526979}
   - {fileID: -6817111998219423721}
+  - {fileID: -6730028724244347712}
 --- !u!114 &733333186345626949
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -85,13 +147,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.85
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.06
+    m_Value: 0.6
   scatter:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.529
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -131,8 +193,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {x: 0.8360989, y: 0.8986085, z: 1, w: -0.06446414}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 0.92254215, y: 0.9146377, z: 1, w: 0.04834812}
+    m_OverrideState: 1
+    m_Value: {x: 0.99965423, y: 0.99440545, z: 1, w: 0.04834812}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 0.9841282, y: 1, z: 0.97502303, w: 0.08863821}

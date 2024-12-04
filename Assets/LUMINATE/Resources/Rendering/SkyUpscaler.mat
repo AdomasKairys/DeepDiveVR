@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyUpscaler
-  m_Shader: {fileID: -6465566751694194690, guid: d89f28e58b09006419cff15f5b4bc15e,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d89f28e58b09006419cff15f5b4bc15e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -46,8 +45,8 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
-    - _Blur_Radius: 0.0025
-    - _Blur_Strength: 0.01
+    - _Blur_Radius: 0.0021
+    - _Blur_Strength: 1.53
     - _CastShadows: 0
     - _Cull: 0
     - _Dither: 0

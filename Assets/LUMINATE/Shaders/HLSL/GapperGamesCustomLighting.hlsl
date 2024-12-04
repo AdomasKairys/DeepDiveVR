@@ -1,7 +1,7 @@
 #ifndef MainLight
 #define MainLight
 
-void MainLight_half(float3 WorldPos, out half3 Dir, out half3 Color, out half DistanceAtten, out half ShadowAtten)
+void GMainLight_half(float3 WorldPos, out half3 Dir, out half3 Color, out half DistanceAtten, out half ShadowAtten)
 {
 #ifdef SHADERGRAPH_PREVIEW
    Dir = half3(0.5, 0.5, 0);

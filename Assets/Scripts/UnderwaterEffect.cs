@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class UnderwaterEffect : MonoBehaviour
 {
@@ -17,33 +20,24 @@ public class UnderwaterEffect : MonoBehaviour
         waterController.OnWaterExit += Water_OnExit;
     }
 
-    
-
-    private void Update()
-    {
-        if (false)
-        {
-            float diff = -_playerPostition.y > 0 ? -_playerPostition.y * 10 : 0;
-            if (diff > 150) diff = 150;
-            RenderSettings.fogColor = new Color((153 - diff)/255, (192 - diff)/255, (178 - diff)/255, 1);
-        }
-    }
-
     private void Water_OnExit(object sender, EventArgs e)
     {
         _isInWatter = false;
-        //A8C1E0
-        RenderSettings.fogColor = new Color(168 / 255, 193 / 255, 224 / 255, 1);
+
+        //9FA6CF
+        RenderSettings.fogColor = new Color(0x9F / 255, 0xA6 / 255, 0xCF / 255, 1);
         RenderSettings.fogMode = FogMode.Exponential;
-        RenderSettings.fogDensity = 0.007f;
-        DynamicGI.UpdateEnvironment();
+        RenderSettings.fogDensity = 0.003f;
+        RenderSettings.fogColor = RenderSettings.fogColor;
+        Debug.Log(RenderSettings.fogColor);
+
     }
 
     private void Water_OnEnter(object sender, EventArgs e)
     {
         _isInWatter = true;
         //73c0b2
-        RenderSettings.fogColor = new Color(153 / 255, 192 / 255, 178 / 255, 1);
+        RenderSettings.fogColor = Color.black;
         RenderSettings.fogMode = FogMode.Linear;
         RenderSettings.fogStartDistance = 0;
         RenderSettings.fogEndDistance = 50;

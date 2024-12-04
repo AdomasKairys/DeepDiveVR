@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FogRenderer
-  m_Shader: {fileID: -6465566751694194690, guid: 5e954bfa274779741af6c271369fe506,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 5e954bfa274779741af6c271369fe506, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,17 +41,17 @@ Material:
     m_Floats:
     - _ADDITIONAL_LIGHTS: 1
     - _ADDITIONAL_LIGHT_SHADOWS: 1
-    - _AdditionalCount: 12
+    - _AdditionalCount: 0
     - _AdditionalLightsCount: 0
-    - _Anisotropy: 0.8
+    - _Anisotropy: 0.859
     - _Brightness: 3
-    - _Density: 0.3
-    - _Jitter: 0.15
+    - _Density: 0.188
+    - _Jitter: 0
     - _LowResDist: 50
     - _LowResMultiplier: 10
     - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
     - _MaxStepSize: 500
-    - _Min_Density: 0
+    - _Min_Density: 0.028
     - _Power: 1
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -61,5 +60,5 @@ Material:
     m_Colors:
     - _BoxBounds: {r: 100000, g: 2000, b: 100000, a: 0}
     - _BoxPos: {r: 0, g: 900, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.48235294, g: 0.5568628, b: 0.6509804, a: 1}
   m_BuildTextureStacks: []
