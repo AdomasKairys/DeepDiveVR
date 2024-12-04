@@ -84,4 +84,5 @@ public class BuoyancyCompensator : MonoBehaviour
             _volumeOfAir -= compensatorDeflateSpeed;
         }
     }
+    public float GetCurrentInflation() => _currentInflation;
 }
