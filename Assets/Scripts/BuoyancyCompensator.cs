@@ -35,12 +35,6 @@ public class BuoyancyCompensator : MonoBehaviour
 
     private float _volumeOfAir = 0f;
 
-    private void Awake()
-    {
-        waterController.OnWaterEnter += Water_OnEnter;
-        waterController.OnWaterExit += Water_OnExit;
-        this.enabled = false;
-    }
     private void Update()
     {
         //if (inflateCompensatorReference.action.IsPressed() && _currentInflation < maxCompensatroInflation)
@@ -61,14 +55,6 @@ public class BuoyancyCompensator : MonoBehaviour
     {
         //var direction = (transform.position - _buoyancyPoint).magnitude > 1 ? (transform.position - _buoyancyPoint).normalized : transform.position - _buoyancyPoint;
         playerRigidBody.AddForce((-Physics.gravity * (1-underwaterMassScale)) + new Vector3(0,_buoyancyForce), ForceMode.Acceleration);
-    }
-    private void Water_OnEnter(object sender, EventArgs e)
-    {
-        this.enabled = true;
-    }
-    private void Water_OnExit(object sender, EventArgs e)
-    {
-        this.enabled = false;
     }
     public void Inflate()
     {

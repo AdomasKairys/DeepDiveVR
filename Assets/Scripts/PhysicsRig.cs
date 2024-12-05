@@ -19,21 +19,18 @@ public class PhysicsRig : MonoBehaviour
     [SerializeField] float bodyHeightMax = 2f;
 
     [SerializeField] WaterController waterController;
-    private bool _chageBodyHeight = true;
-
-    private void Awake()
-    {
-        waterController.OnWaterEnter += (_, _) => _chageBodyHeight = false;
-        waterController.OnWaterExit += (_, _) => _chageBodyHeight = true;
-    }
 
     private void FixedUpdate()
     {
-        if (_chageBodyHeight)
+        if (!waterController.IsInWater)
         {
             bodyCollider.height = Mathf.Clamp(playerHead.localPosition.y, bodyHeightMin, bodyHeightMax);
             bodyCollider.center = new Vector3(playerHead.localPosition.x, bodyCollider.height / 2,
-                playerHead.localPosition.z);
+            playerHead.localPosition.z);
+        }
+        else
+        {
+            bodyCollider.height = 0.5f;
         }
 
 

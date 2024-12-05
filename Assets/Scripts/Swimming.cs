@@ -1,6 +1,7 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
+using Unity.Mathematics;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Swimming : MonoBehaviour
@@ -16,7 +17,6 @@ public class Swimming : MonoBehaviour
     [SerializeField] InputActionReference rightControllerSwingReference;
     [SerializeField] InputActionReference rightControllerVelocity;
     [SerializeField] Transform trackingReference;
-    [SerializeField] WaterController waterController;
     [SerializeField] CapsuleCollider capsuleCollider;
 
     //[SerializeField] Transform leftController;
@@ -26,25 +26,17 @@ public class Swimming : MonoBehaviour
     Rigidbody _rigidbody;
 
     float _coolDownTimer;
-    private bool _isEnabled = false;
-    private float _defaultColliderHeight;
+
+    int _audioClipsLength;
 
     private void Awake()
     {
-        _defaultColliderHeight= capsuleCollider.height;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        waterController.OnWaterEnter += Water_OnEnter;
-        waterController.OnWaterExit += Water_OnExit;
-
     }
 
     private void FixedUpdate()
     {
-
-        if (!_isEnabled)
-            return;
-        
         _coolDownTimer += Time.fixedDeltaTime;
         if (_coolDownTimer > minTimeBetweenStrokes
             && leftControllerSwingReference.action.IsPressed()
@@ -68,15 +60,5 @@ public class Swimming : MonoBehaviour
         {
             _rigidbody.AddForce(-_rigidbody.velocity * dragForce, ForceMode.Acceleration);
         }
-    }
-    private void Water_OnEnter(object sender, EventArgs e)
-    {
-        _isEnabled = true;
-        capsuleCollider.height = 0.5f;
-    }
-    private void Water_OnExit(object sender, EventArgs e)
-    {
-        _isEnabled = false;
-        capsuleCollider.height = _defaultColliderHeight;
     }
 }

@@ -12,15 +12,7 @@ public class UnderwaterEffect : MonoBehaviour
     private bool _isInWatter = false;
     private Vector3 _playerPostition = Vector3.zero;
 
-    private void Awake()
-    {
-        var waterController = GetComponent<WaterController>();
-
-        waterController.OnWaterEnter += Water_OnEnter;
-        waterController.OnWaterExit += Water_OnExit;
-    }
-
-    private void Water_OnExit(object sender, EventArgs e)
+    public void Water_OnExit()
     {
         _isInWatter = false;
 
@@ -33,7 +25,7 @@ public class UnderwaterEffect : MonoBehaviour
 
     }
 
-    private void Water_OnEnter(object sender, EventArgs e)
+    public void Water_OnEnter()
     {
         _isInWatter = true;
         //73c0b2

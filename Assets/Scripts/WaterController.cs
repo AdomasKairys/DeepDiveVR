@@ -2,32 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaterController : MonoBehaviour
 {
     [SerializeField] float objectMassScale = 0.2f;
 
-    public event EventHandler OnWaterEnter;
-    public event EventHandler OnWaterExit;
+    public UnityEvent OnWaterEnter;
+    public UnityEvent OnWaterExit;
 
-    private bool _isInWater = false;
+    public bool IsInWater { get; private set; }
 
+    private void Awake()
+    {
+        IsInWater = false;
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MainCamera"))
         {
-            _isInWater=true;
-            OnWaterEnter?.Invoke(this, EventArgs.Empty);
+            IsInWater = true;
+            OnWaterEnter?.Invoke();
         }
     }
 
     // Required if the trigger is composed out of multiple triggers
     public void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("MainCamera") && !_isInWater)
+        if (other.CompareTag("MainCamera") && !IsInWater)
         {
-            _isInWater = true;
-            OnWaterEnter?.Invoke(this, EventArgs.Empty);
+            IsInWater = true;
+            OnWaterEnter?.Invoke();
         }
         if (other.CompareTag("Object"))
         {
@@ -38,8 +43,8 @@ public class WaterController : MonoBehaviour
     {
         if (other.CompareTag("MainCamera"))
         {
-            _isInWater=false;
-            OnWaterExit?.Invoke(this, EventArgs.Empty);
+            IsInWater = false;
+            OnWaterExit?.Invoke();
         }
     }
 
