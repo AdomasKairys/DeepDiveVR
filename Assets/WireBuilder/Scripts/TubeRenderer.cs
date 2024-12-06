@@ -41,7 +41,9 @@ public class TubeRenderer : MonoBehaviour
 
 		_mesh = new Mesh();
 		_meshFilter.mesh = _mesh;
-	}
+
+        GenerateMesh();
+    }
 
 	private void OnEnable()
 	{
@@ -51,11 +53,6 @@ public class TubeRenderer : MonoBehaviour
 	private void OnDisable()
 	{
 		_meshRenderer.enabled = false;
-	}
-
-	void Update ()
-	{
-		GenerateMesh();
 	}
 
 	private void OnValidate()
