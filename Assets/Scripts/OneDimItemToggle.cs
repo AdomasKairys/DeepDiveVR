@@ -6,8 +6,16 @@ using UnityEngine.Events;
 
 public class OneDimItemToggle : MonoBehaviour
 {
-    [SerializeField] UnityEvent primaryAction;
-    [SerializeField] UnityEvent secondaryAction;
+    [Header("Continuous action")]
+    [SerializeField] UnityEvent primaryActionActivatedContinuous;
+    [SerializeField] UnityEvent secondaryActionActivatedContinuous;
+    [Header("One shot action")]
+    [SerializeField] UnityEvent primaryActionActivatedSingle;
+    [SerializeField] UnityEvent secondaryActionActivatedSingle;
+    [Header("Disable action")]
+    [SerializeField] UnityEvent primaryActionDeactivated;
+    [SerializeField] UnityEvent secondaryActionDeactivated;
+    [Header("Activation delay")]
     [SerializeField, Min(0f)] float activationDelay = 0.1f; 
 
     private XRGrabInteractable _grabInteractable;
@@ -23,6 +31,8 @@ public class OneDimItemToggle : MonoBehaviour
         _grabInteractable.selectExited.AddListener((_) =>
         {
             _toggleValue = 0;
+            primaryActionDeactivated.Invoke();
+            primaryActionDeactivated.Invoke();
         });
     }
     private void Update()
@@ -39,11 +49,11 @@ public class OneDimItemToggle : MonoBehaviour
         _currentDelay = activationDelay;
         if (_toggleValue > 0)
         {
-            primaryAction.Invoke();
+            primaryActionActivatedContinuous.Invoke();
         }
         else if (_toggleValue < 0)
         {
-            secondaryAction.Invoke();
+            secondaryActionActivatedContinuous.Invoke();
         }
     }
     void OnDestroy()
@@ -61,6 +71,15 @@ public class OneDimItemToggle : MonoBehaviour
             // activate input needs to be with negative and positive bindings (1D)
             float dimension = controller.activateInput.ReadValue();
             _toggleValue = (int)dimension;
+
+            if (_toggleValue > 0)
+            {
+                primaryActionActivatedSingle.Invoke();
+            }
+            else if (_toggleValue < 0)
+            {
+                secondaryActionActivatedSingle.Invoke();
+            }
             //Debug.Log(dimension);
         }
     }
@@ -73,6 +92,9 @@ public class OneDimItemToggle : MonoBehaviour
             // activate input needs to be with negative and positive bindings (1D)
             float dimension = controller.activateInput.ReadValue();
             _toggleValue = (int)dimension;
+
+            primaryActionDeactivated.Invoke();
+            primaryActionDeactivated.Invoke();
             //Debug.Log(dimension);
         }
     }

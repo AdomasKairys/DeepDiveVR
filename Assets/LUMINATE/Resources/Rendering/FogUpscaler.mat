@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaMultiplier: 0.597
+    - _AlphaMultiplier: 0.943
     - _BlurIterations: 2
-    - _BlurRadius: 0.0021
-    - _BlurStrength: 4.86
+    - _BlurRadius: 0.01
+    - _BlurStrength: 0.5
     - _Fullscreen_AlphaBlendOperation: 0
     - _Fullscreen_BlendMode: 1
     - _Fullscreen_ColorBlendOperation: 0
