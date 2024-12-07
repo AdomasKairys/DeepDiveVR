@@ -49,13 +49,13 @@ MonoBehaviour:
     m_Value: 2
   alphaMultiplier:
     m_OverrideState: 1
-    m_Value: 0.597
+    m_Value: 0.098
   additionalLightsIntensityMultiplier:
     m_OverrideState: 1
     m_Value: 0
   jitter:
     m_OverrideState: 1
-    m_Value: 0.072
+    m_Value: 0.098
   downsample:
     m_OverrideState: 0
     m_Value: 2
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Value: 0.2
   density:
     m_OverrideState: 1
-    m_Value: 0.139
+    m_Value: 0.166
   minDensity:
     m_OverrideState: 1
     m_Value: 0.036

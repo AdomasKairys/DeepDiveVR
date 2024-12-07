@@ -257,7 +257,7 @@ MonoBehaviour:
     m_Value: 2
   alphaMultiplier:
     m_OverrideState: 1
-    m_Value: 0.943
+    m_Value: 0.843
   additionalLightsIntensityMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -275,7 +275,7 @@ MonoBehaviour:
     m_Value: 0.2
   density:
     m_OverrideState: 1
-    m_Value: 0.188
+    m_Value: 0.165
   minDensity:
     m_OverrideState: 1
     m_Value: 0.028
