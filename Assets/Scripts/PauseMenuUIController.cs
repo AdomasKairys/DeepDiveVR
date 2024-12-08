@@ -9,14 +9,14 @@ public class PauseMenuUIController : MonoBehaviour
     [SerializeField] Sprite pauseSprite;
     [SerializeField] Sprite resumeSprite;
 
+    [SerializeField] RectTransform menu;
     [SerializeField] Button restartButton;
     [SerializeField] Button quitButton;
-    [SerializeField] Button pauseButton;
 
     private Image _pauseButtonImage;
     void Awake()
     {
-        _pauseButtonImage = pauseButton.GetComponent<Image>();
+        _pauseButtonImage = gameObject.GetComponent<Image>();
         _pauseButtonImage.sprite = pauseSprite;
         restartButton.onClick.AddListener(() =>
         {
@@ -28,15 +28,11 @@ public class PauseMenuUIController : MonoBehaviour
         {
             Application.Quit();
         });
-
-        pauseButton.onClick.AddListener(() => { 
-            ToggleMenu(); 
-        });
     }
 
     public void ToggleMenu()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        menu.gameObject.SetActive(!menu.gameObject.activeSelf);
 
         if (gameObject.activeSelf)
             _pauseButtonImage.sprite = resumeSprite;

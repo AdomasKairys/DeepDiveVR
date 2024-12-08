@@ -31,13 +31,14 @@ public class BCDAudioController : MonoBehaviour
                 continue;
 
             loopSource.loop = _isLooping;
-            if (loopSource.isPlaying)
+            if (loopSource.isPlaying && loopSource.loop)
                 continue;
             else if (loopSource.loop)
             {
                 loopSource.Play();
                 continue;
             }
+            loopSource.Stop();
             _isPlaying = false;
         }
         endSource.Play();

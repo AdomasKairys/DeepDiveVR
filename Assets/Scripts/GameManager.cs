@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnOxygenChanged;
     public UnityEvent OnOxygenRanOut;
     public UnityEvent OnGracePeriodOver;
+    public UnityEvent OnRefillOxygen;
+
 
 
     private float _currentOxygen = 0f;
@@ -34,7 +36,11 @@ public class GameManager : MonoBehaviour
     public float GetCurrentOxygen() => _currentOxygen;
     public float GetMaxOxygen() => maxOxygen;
 
-
+    public void RefillOxygen()
+    {
+        _currentOxygen = maxOxygen;
+        OnRefillOxygen?.Invoke();
+    }
     public void ReduceOxygen(float ammount)
     {
         if(_isOutOfOxygen) return;
