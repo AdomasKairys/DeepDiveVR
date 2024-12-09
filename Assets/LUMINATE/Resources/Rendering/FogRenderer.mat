@@ -43,15 +43,15 @@ Material:
     - _ADDITIONAL_LIGHT_SHADOWS: 1
     - _AdditionalCount: 0
     - _AdditionalLightsCount: 0
-    - _Anisotropy: 0.896
-    - _Brightness: 3
-    - _Density: 0.842
-    - _Jitter: 0.005
+    - _Anisotropy: 0.893
+    - _Brightness: 0.9
+    - _Density: 0.262
+    - _Jitter: 0.098
     - _LowResDist: 50
     - _LowResMultiplier: 10
     - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
     - _MaxStepSize: 500
-    - _Min_Density: 0.028
+    - _Min_Density: 0.036
     - _Power: 1
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -60,5 +60,5 @@ Material:
     m_Colors:
     - _BoxBounds: {r: 100000, g: 2000, b: 100000, a: 0}
     - _BoxPos: {r: 0, g: 900, b: 0, a: 0}
-    - _Color: {r: 0.48235294, g: 0.5568628, b: 0.6509804, a: 1}
+    - _Color: {r: 0.6000801, g: 0.84654975, b: 0.8773585, a: 1}
   m_BuildTextureStacks: []

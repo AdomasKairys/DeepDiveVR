@@ -32,7 +32,7 @@ public class OneDimItemToggle : MonoBehaviour
         {
             _toggleValue = 0;
             primaryActionDeactivated.Invoke();
-            primaryActionDeactivated.Invoke();
+            secondaryActionDeactivated.Invoke();
         });
     }
     private void Update()
@@ -94,7 +94,7 @@ public class OneDimItemToggle : MonoBehaviour
             _toggleValue = (int)dimension;
 
             primaryActionDeactivated.Invoke();
-            primaryActionDeactivated.Invoke();
+            secondaryActionDeactivated.Invoke();
             //Debug.Log(dimension);
         }
     }

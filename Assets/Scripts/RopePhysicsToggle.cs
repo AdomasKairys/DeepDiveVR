@@ -14,6 +14,9 @@ public class RopePhysicsToggle : MonoBehaviour
         {
             _ropeTransforms[i] = ropeBones[i].transform;
         }
+    }
+    private void Start()
+    {
         Sleep();
     }
     private IEnumerator SleepCoroutine()
