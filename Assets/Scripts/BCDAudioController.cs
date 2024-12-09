@@ -8,7 +8,6 @@ public class BCDAudioController : MonoBehaviour
     [SerializeField] AudioSource startSource;
     [SerializeField] AudioSource endSource;
 
-    bool _isPlaying = false;
     bool _isLooping = true;
 
     public void StopAudio()
@@ -23,14 +22,14 @@ public class BCDAudioController : MonoBehaviour
     private IEnumerator PlayAudioCoroutine()
     {
         startSource.Play();
-        _isPlaying = true;
-        while (_isPlaying)
+        while (loopSource.loop)
         {
             yield return null;
+            loopSource.loop = _isLooping;
+
             if (startSource.isPlaying)
                 continue;
 
-            loopSource.loop = _isLooping;
             if (loopSource.isPlaying && loopSource.loop)
                 continue;
             else if (loopSource.loop)
@@ -38,9 +37,9 @@ public class BCDAudioController : MonoBehaviour
                 loopSource.Play();
                 continue;
             }
-            loopSource.Stop();
-            _isPlaying = false;
         }
+        startSource.Stop();
+        loopSource.Stop();
         endSource.Play();
     }
 }

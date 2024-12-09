@@ -34,7 +34,7 @@ public class PauseMenuUIController : MonoBehaviour
     {
         menu.gameObject.SetActive(!menu.gameObject.activeSelf);
 
-        if (gameObject.activeSelf)
+        if (menu.gameObject.activeSelf)
             _pauseButtonImage.sprite = resumeSprite;
         else
             _pauseButtonImage.sprite = pauseSprite;
