@@ -12,16 +12,17 @@ public class GrabPhysics : MonoBehaviour
 
 
     private FixedJoint _fixedJoint;
-    private bool _isGrabbing = false;
     private float _defaultDrag;
+    public bool IsGrabbing { get; private set; } = false;
     private void Awake()
     {
         _defaultDrag = connectedBody.drag;
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (controllerGrabReference.action.ReadValue<float>() > 0.1f && !_isGrabbing)
+        if (controllerGrabReference.action.ReadValue<float>() > 0.1f && !IsGrabbing)
         {
             Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, radius, grabLayer);
             if (nearbyColliders.Length > 0)
@@ -43,12 +44,12 @@ public class GrabPhysics : MonoBehaviour
                     connectedBody.drag = 6f;
                     _fixedJoint.connectedAnchor = transform.position;
                 }
-                _isGrabbing = true;
+                IsGrabbing = true;
             }
         }
-        else if (controllerGrabReference.action.ReadValue<float>() <= 0.1f && _isGrabbing)
+        else if (controllerGrabReference.action.ReadValue<float>() <= 0.1f && IsGrabbing)
         {
-            _isGrabbing = false;
+            IsGrabbing = false;
             connectedBody.drag = _defaultDrag;
             if (_fixedJoint)
                 Destroy(_fixedJoint);

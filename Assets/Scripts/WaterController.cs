@@ -44,6 +44,7 @@ public class WaterController : MonoBehaviour
         if (other.CompareTag("MainCamera"))
         {
             IsInWater = false;
+            GameManager.Instance.Resurface();
             OnWaterExit?.Invoke();
         }
     }

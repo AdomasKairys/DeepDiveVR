@@ -22,10 +22,11 @@ public class BCDAudioController : MonoBehaviour
     private IEnumerator PlayAudioCoroutine()
     {
         startSource.Play();
+        loopSource.loop = _isLooping;
         while (loopSource.loop)
         {
-            yield return null;
             loopSource.loop = _isLooping;
+            yield return null;
 
             if (startSource.isPlaying)
                 continue;

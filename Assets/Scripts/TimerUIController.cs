@@ -16,9 +16,11 @@ public class TimerUIController : MonoBehaviour
     }
     void Update()
     {
-        //if (isTimerRunning)
-        timer += Time.deltaTime;
-        DisplayTime();
+        if (isTimerRunning)
+        {
+            timer += Time.deltaTime;
+            DisplayTime();
+        }
     }
     void DisplayTime()
     {

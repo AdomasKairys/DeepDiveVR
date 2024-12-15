@@ -8,34 +8,42 @@ using UnityEngine.UI;
 public class BlackOutEffectController : MonoBehaviour
 {
     [SerializeField] Volume worldVolume;
-    [SerializeField] Image blackOutImage;
 
     private Vignette _vignetteEffect;
+    private ColorAdjustments _colorAdjustments;
     private void Awake()
     {
         Vignette vignette;
+        ColorAdjustments colorAdjustments;
         if (worldVolume.profile.TryGet(out vignette))
         {
             _vignetteEffect = vignette;
         }
+        if (worldVolume.profile.TryGet(out colorAdjustments))
+        {
+            _colorAdjustments = colorAdjustments;
+        }
     }
     public void StartBlackOutEffect()
     {
-        StartCoroutine(BlackOutEffect());
+        StopAllCoroutines();
+        StartCoroutine(BlackOutEffect(0.6f, new Color(0.8f, 0.4f, 0.4f, 1f)));
     }
-    private IEnumerator BlackOutEffect()
+    public void StopBlackOutEffect()
+    {
+        StopAllCoroutines();
+        StartCoroutine(BlackOutEffect(0.2f, new Color(1f, 1f, 1f, 1f)));
+    }
+    private IEnumerator BlackOutEffect(float targetIntesity, Color targetColor)
     {
         float timer = 0f;
-        Color color = blackOutImage.color;
-        blackOutImage.enabled = true;
-        color.a = 0;
-        float originalColorA = color.a;
         float originalVignetteIntesity = _vignetteEffect.intensity.value;
-        while(timer < GameManager.Instance.GetGracePeriod())
+        Color originalColor = _colorAdjustments.colorFilter.value;
+
+        while (timer < GameManager.Instance.GetGracePeriod())
         {
-            _vignetteEffect.intensity.value = Mathf.Lerp(originalVignetteIntesity, 0.6f, timer / GameManager.Instance.GetGracePeriod());
-            color.a = Mathf.Lerp(originalColorA, (float)224/255, timer/ GameManager.Instance.GetGracePeriod());
-            blackOutImage.color = color;
+            _vignetteEffect.intensity.value = Mathf.Lerp(originalVignetteIntesity, targetIntesity, timer / GameManager.Instance.GetGracePeriod());
+            _colorAdjustments.colorFilter.value = Color.Lerp(originalColor, targetColor, timer / GameManager.Instance.GetGracePeriod());
             timer += Time.deltaTime;
             yield return null;
         }

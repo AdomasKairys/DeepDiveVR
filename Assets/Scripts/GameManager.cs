@@ -17,11 +17,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGracePeriodOver;
     public UnityEvent OnRefillOxygen;
 
-
-
     private float _currentOxygen = 0f;
     private bool _isOutOfOxygen = false;
-    private float _currentGraceTime = 0f;
 
     void Awake()
     {
@@ -35,10 +32,16 @@ public class GameManager : MonoBehaviour
 
     public float GetCurrentOxygen() => _currentOxygen;
     public float GetMaxOxygen() => maxOxygen;
-
+    public void Resurface() {
+        StopAllCoroutines();
+        _isOutOfOxygen = false;
+    }
+    
     public void RefillOxygen()
     {
+        StopAllCoroutines();
         _currentOxygen = maxOxygen;
+        _isOutOfOxygen = false;
         OnRefillOxygen?.Invoke();
     }
     public void ReduceOxygen(float ammount)

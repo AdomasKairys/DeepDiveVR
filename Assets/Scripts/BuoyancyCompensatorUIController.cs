@@ -8,8 +8,8 @@ public class BuoyancyCompensatorUIController : MonoBehaviour
     [SerializeField] Slider buoyancySlider;
     [SerializeField] BuoyancyCompensator buoyancyCompensator;
 
-    void Update()
+    private void Awake()
     {
-        buoyancySlider.value = buoyancyCompensator.GetCurrentInflation();
+        buoyancyCompensator.OnBuoyancyChanged += (_, args) => buoyancySlider.value = args.currentInflation;
     }
 }

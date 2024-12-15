@@ -23,11 +23,6 @@ public class PauseMenuUIController : MonoBehaviour
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
         });
-
-        quitButton.onClick.AddListener(() =>
-        {
-            Application.Quit();
-        });
     }
 
     public void ToggleMenu()

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class BuoyancyCompensator : MonoBehaviour
 {
+
     [Tooltip("reference of the water surface")]
     [SerializeField] Transform waterSurfaceLevel;
     [SerializeField] Rigidbody playerRigidBody;
@@ -24,6 +25,9 @@ public class BuoyancyCompensator : MonoBehaviour
     [SerializeField] float compressAmmount = 0.1f;
 
     private Vector3 _buoyancyPoint = Vector3.zero;
+    public bool isInWater { get; set; } = false; 
+
+    public event EventHandler<BuoyancyEventArgs> OnBuoyancyChanged;
 
     // if buoyancy force is greater than the force of gravity we have positive buoyancy (rising)
     // if its less than the force of gravity we have negative buoyancy (sinking)
@@ -35,26 +39,25 @@ public class BuoyancyCompensator : MonoBehaviour
 
     private float _volumeOfAir = 0f;
 
+    public class BuoyancyEventArgs: EventArgs
+    {
+        public float currentInflation;
+    }
+
     private void Update()
     {
-        //if (inflateCompensatorReference.action.IsPressed() && _currentInflation < maxCompensatroInflation)
-        //{
-        //    _volumeOfAir += compensatorInflateSpeed;
-        //}
-        //else if(deflateCompensatorReference.action.IsPressed() && _currentInflation > 0)
-        //{
-        //    _volumeOfAir -= compensatorDeflateSpeed;
-        //}
 
         _currentInflation = _volumeOfAir - compressAmmount * Mathf.Round(waterSurfaceLevel.position.y-playerRigidBody.position.y) / waterPressureStep;
         _currentInflation = _currentInflation < 0 ? 0 : _currentInflation;
         _buoyancyForce = _currentInflation * maxBuoyancyForce;
+        OnBuoyancyChanged?.Invoke(this, new BuoyancyEventArgs() { currentInflation = _currentInflation });
     }
 
     void FixedUpdate()
     {
         //var direction = (transform.position - _buoyancyPoint).magnitude > 1 ? (transform.position - _buoyancyPoint).normalized : transform.position - _buoyancyPoint;
-        playerRigidBody.AddForce((-Physics.gravity * (1-underwaterMassScale)) + new Vector3(0,_buoyancyForce), ForceMode.Acceleration);
+        if(isInWater)
+            playerRigidBody.AddForce((-Physics.gravity * (1-underwaterMassScale)) + new Vector3(0,_buoyancyForce), ForceMode.Acceleration);
     }
     public void Inflate()
     {
@@ -70,5 +73,4 @@ public class BuoyancyCompensator : MonoBehaviour
             _volumeOfAir -= compensatorDeflateSpeed;
         }
     }
-    public float GetCurrentInflation() => _currentInflation;
 }
